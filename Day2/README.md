@@ -48,11 +48,8 @@ Following the Elf's instructions for the second column, what would your total sc
 
 We have a multiline input string, it looks like this:
 
-<details>
-  <summary>
-    summary
-  </summary>
-  A Y
+```
+A Y
 A Y
 B X
 A Y
@@ -2552,4 +2549,4 @@ A Y
 A Y
 B Y
 A Y
-</details>
+```

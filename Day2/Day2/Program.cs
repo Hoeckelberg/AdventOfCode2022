@@ -2522,12 +2522,11 @@ int maxScoreEnemy = 0;
 // scores: 0 -> lose, 3 -> draw, 6 -> win
 // shape score: 1 -> rock, 2 -> paper, 3 -> scissor
 
-string currentSelectionEnemy = "";
-string currentSelectionSelf = "";
+string currentSelectionEnemy = String.Empty;
+string currentSelectionSelf = String.Empty;
 
 foreach (var item in input)
 {
-    //System.Threading.Thread.Sleep(1000);
     if (currentSelectionEnemy == "")
     {
         if (item.Equals('A'))
