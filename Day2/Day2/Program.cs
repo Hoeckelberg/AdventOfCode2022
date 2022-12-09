@@ -2514,6 +2514,7 @@ int draw = 3;
 int win = 6;
 
 int maxScoreSelf = 0;
+int forcedMaxScore = 0;
 int maxScoreEnemy = 0;
 
 // gegner: A -> rock, B -> Paper, C -> Scissor
@@ -2560,31 +2561,22 @@ foreach (var item in input)
     else
     {
         currentTurn(currentSelectionEnemy, currentSelectionSelf);
+        forceTurnResult(currentSelectionEnemy, currentSelectionSelf);
         // whitespace
         currentSelectionEnemy = "";
         currentSelectionSelf = "";
     }
 }
 Console.WriteLine(maxScoreSelf);
+Console.WriteLine(forcedMaxScore);
 
 void currentTurn(string enemy, string self)
-{
-    if (calculateDraw(enemy, self))
-    {
-        Console.WriteLine("Draw");
-    }
-    if (calculateTurnWinner(enemy, self))
-    {
-        Console.WriteLine("Calculate Turn Winner: ");
-    }
-}
-
-bool calculateDraw(string enemy, string self)
 {
     // gegner: A -> rock, B -> Paper, C -> Scissor
     // selber: X -> rock, Y -> Paper, Z -> Scissor
     if (enemy != null && enemy != "" && self != null && self != "")
     {
+        // CALCULATE ALL DRAWS
         if (enemy == "A" && self == "X")
         {
             maxScoreSelf += draw + rockScore;
@@ -2597,29 +2589,16 @@ bool calculateDraw(string enemy, string self)
         {
             maxScoreSelf += draw + scissorScore;
         }
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-bool calculateTurnWinner(string enemy, string self)
-{
-    // gegner: A -> rock, B -> Paper, C -> Scissor
-    // selber: X -> rock, Y -> Paper, Z -> Scissor
-    if (enemy != null && enemy != "" && self != null && self != "")
-    {
-        if(enemy == "A" && self == "Y")
+        // CALCULATE WIN/LOSE CONDITIONS
+        if (enemy == "A" && self == "Y")
         {
             maxScoreSelf += win + paperScore;
         }
-        else if(enemy == "A" && self == "Z")
+        else if (enemy == "A" && self == "Z")
         {
             maxScoreSelf += lose + scissorScore;
         }
-        else if(enemy == "B" && self == "X")
+        else if (enemy == "B" && self == "X")
         {
             maxScoreSelf += lose + rockScore;
         }
@@ -2635,7 +2614,53 @@ bool calculateTurnWinner(string enemy, string self)
         {
             maxScoreSelf += lose + paperScore;
         }
-        return true;
     }
-    else { return false; }
+}
+
+void forceTurnResult(string enemy, string self)
+{
+    // gegner: A -> rock, B -> Paper, C -> Scissor
+    // selber: X -> lose, Y -> draw, Z -> Win
+    if (enemy != null && enemy != "" && self != null && self != "")
+    {
+        // A
+        if (enemy == "A" && self == "X")
+        {
+            forcedMaxScore += lose + scissorScore;
+        }
+        else if (enemy == "A" && self == "Y")
+        {
+            forcedMaxScore += draw + rockScore;
+        }
+        else if (enemy == "A" && self == "Z")
+        {
+            forcedMaxScore += win + paperScore;
+        }
+        // B
+        else if (enemy == "B" && self == "X")
+        {
+            forcedMaxScore += lose + rockScore;
+        }
+        else if (enemy == "B" && self == "Y")
+        {
+            forcedMaxScore += draw + paperScore;
+        }
+        else if (enemy == "B" && self == "Z")
+        {
+            forcedMaxScore += win + scissorScore;
+        }
+        // C
+        else if (enemy == "C" && self == "X")
+        {
+            forcedMaxScore += lose + paperScore;
+        }
+        else if (enemy == "C" && self == "Y")
+        {
+            forcedMaxScore += draw + scissorScore;
+        }
+        else if (enemy == "C" && self == "Z")
+        {
+            forcedMaxScore += win + rockScore;
+        }
+    }
 }

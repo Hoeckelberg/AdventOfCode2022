@@ -15,9 +15,11 @@ Since you can't be sure if the Elf is trying to help you or trick you, you shoul
 
 For example, suppose you were given the following strategy guide:
 
+```
 A Y
 B X
 C Z
+```
 
 This strategy guide predicts and recommends the following:
 
@@ -43,6 +45,17 @@ The total score is still calculated in the same way, but now you need to figure 
 Now that you're correctly decrypting the ultra top secret strategy guide, you would get a total score of 12.
 
 Following the Elf's instructions for the second column, what would your total score be if everything goes exactly according to your strategy guide?
+
+# results
+- Part 1
+Your puzzle answer was 11906.
+
+The first half of this puzzle is complete! It provides one gold star: *
+
+- Part 2
+Your puzzle answer was 11186.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
 
 # Input
 
